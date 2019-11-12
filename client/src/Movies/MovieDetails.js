@@ -1,8 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default MovieDetails;
 
-function MovieDetails({ movie }) {
+const AbsoluteButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
+function MovieDetails({ movie, save }) {
+  console.log(movie);
 
   const { title, director, metascore, stars } = movie;
   return (
@@ -21,6 +29,8 @@ function MovieDetails({ movie }) {
           {star}
         </div>
       ))}
+
+      <AbsoluteButton onClick={() => save(movie)}>Save Movie</AbsoluteButton>
     </div>
   );
 }

@@ -7,8 +7,8 @@ const SavedList = props => {
 return (
   <div className="saved-list">
     <h3>Saved Movies:</h3>
-    {props.savedList.map(movie => (
-      <span className="saved-movie">{movie.title}</span>
+    {props.savedList.map((movie, i) => (
+      <span key={i} className="saved-movie">{movie.title}</span>
     ))}
     <div className="home-button" onClick={() => returnHome(props)}>Home</div>
   </div>
