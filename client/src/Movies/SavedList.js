@@ -1,17 +1,23 @@
 import React from 'react';
-import { navigateToById } from './MovieDetails';
+import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
+import './movies.css';
+
 
 const SavedList = props => {
 
-  console.log(props);
-
 return (
   <div className="saved-list">
-    <h3>Saved Movies:</h3>
+    <div>
+      <h3>Saved Movies:</h3>
+      <div className="home-button" onClick={() => returnHome(props)}>Home</div>
+    </div>
+    <div>
     {props.savedList.map((movie, i) => (
-      <span key={i} className="saved-movie" onClick={() => navigateToById(movie, props.history)}>{movie.title}</span>
+      <NavLink activeClassName="focusSaved" key={i} className="saved-movie" to={`/saved/${movie.id}`}>{movie.title}</NavLink>
     ))}
-    <div className="home-button" onClick={() => returnHome(props)}>Home</div>
+    </div>
+
   </div>
 )};
 
@@ -20,3 +26,4 @@ export default SavedList;
 function returnHome(props) {
   props.history.push("/");
 }
+

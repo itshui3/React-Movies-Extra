@@ -10,8 +10,9 @@ const App = () => {
   const [savedList, setSavedList] = useState( [] );
   //saved list of movies is an array of objects, this will allow MovieDetails to iterate through! 
 
-  const addToSavedList = movie => {
+  const addToSavedList = (movie, e) => {
     setSavedList( [...savedList, movie] );
+    e.stopPropagation();
   };
 
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Route path="/" render={props => <SavedList {...props} savedList={savedList} />}></Route>
       <Route exact path="/" render={(props) => <MovieList {...props} save={addToSavedList} />}></Route>
       <Route path="/movies/:id" render={props => <Movie {...props} savedList={savedList} save={addToSavedList} />}></Route>
+      <Route path="/saved/:id" render={props => <Movie {...props} />} />
     </div>
   );
 };

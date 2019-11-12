@@ -30,7 +30,15 @@ function MovieDetails({ movie, save }) {
         </div>
       ))}
 
-      <AbsoluteButton onClick={(event) => {save(movie); event.stopPropagation();}}>Save Movie</AbsoluteButton>
+      {
+        save
+          ? <AbsoluteButton onClick={(e) => save(movie, e)}>Save Movie</AbsoluteButton> 
+          : null
+      }
+
+
+      }
+
     </div>
   );
 }
