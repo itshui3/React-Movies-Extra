@@ -30,8 +30,11 @@ function MovieDetails({ movie, save }) {
         </div>
       ))}
 
-      <AbsoluteButton onClick={() => save(movie)}>Save Movie</AbsoluteButton>
+      <AbsoluteButton onClick={(event) => {save(movie); event.stopPropagation();}}>Save Movie</AbsoluteButton>
     </div>
   );
 }
 
+export function navigateToById(obj, hist) {
+  hist.push(`/movies/${obj.id}`)
+}

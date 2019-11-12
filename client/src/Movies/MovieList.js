@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import MovieDetails from './MovieDetails';
+import MovieDetails, { navigateToById } from './MovieDetails';
 
 const MovieList = props => {
 
@@ -34,10 +34,5 @@ const MovieList = props => {
   );
 }
 
-
-
-function navigateToById(obj, hist) {
-  hist.push(`/movies/${obj.id}`)
-}
 
 export default MovieList;
