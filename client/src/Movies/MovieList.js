@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const MovieList = props => {
+
+  const hist = props.history;
+
   const [movies, setMovies] = useState([])
   useEffect(() => {
     const getMovies = () => {
@@ -21,16 +24,18 @@ const MovieList = props => {
   return (
     <div className="movie-list">
       {movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
+        <MovieDetails key={movie.id} movie={movie} hist={hist} />
       ))}
     </div>
   );
 }
 
-function MovieDetails({ movie }) {
+function MovieDetails({ movie, hist }) {
+
+  console.log(window.history);
   const { title, director, metascore, stars } = movie;
   return (
-    <div className="movie-card">
+    <div onClick={() => navigateToById(movie, hist)} className="movie-card">
       <h2>{title}</h2>
       <div className="movie-director">
         Director: <em>{director}</em>
@@ -47,6 +52,10 @@ function MovieDetails({ movie }) {
       ))}
     </div>
   );
+}
+
+function navigateToById(obj, hist) {
+  hist.push(`/movies/${obj.id}`)
 }
 
 export default MovieList;
